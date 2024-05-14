@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solución S</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        input[type="number"] {
+            width: 100px;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .set {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Solución S</h1>
+        <h2>Conjunto de posibles soluciones</h2>
+        <br>
+        <img src="3.png" alt="Modelo Matemático" style="width: 700px; height: auto;">
+        <br>
+        <br>
+        <form id="setForm">
+            <label for="n">n:</label>
+            <input type="number" id="n" placeholder="Paso actual">
+            <br>
+            <label for="cpow">cpow:</label>
+            <input type="number" id="cpow" placeholder="Cambio duración">
+            <br>
+            <label for="ppow">ppow:</label>
+            <input type="number" id="ppow" placeholder="Número control">
+            <br>
+            <button type="button" onclick="generarConjunto()">Generar Conjunto</button>
+        </form>
+        <div id="resultado" class="set"></div>
+        <br>
+        <a href="index.html" type="button">Atrás</a>
+    </div>
+
+    <script>
+        function generarConjunto() {
+            var n = parseInt(document.getElementById('n').value);
+            var cpow = parseFloat(document.getElementById('cpow').value);
+            var ppow = parseFloat(document.getElementById('ppow').value);
+            var conjunto = "<b>S</b> = {";
+            for (var i = 1; i <= n; i++) {
+                conjunto += "(" + i + ", " + cpow + ", " + ppow + ")";
+                if (i < n) {
+                    conjunto += ", ";
+                }
+            }
+            conjunto += "}";
+            document.getElementById('resultado').innerHTML = conjunto;
+        }
+    </script>
+</body>
+</html>

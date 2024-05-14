@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualización de Feromonas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        input[type="number"] {
+            width: 100px;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Actualización de Feromonas</h1>
+        <h2>Ajuste de feromonas (comunicación entre agentes)</h2>
+        <br>
+        <img src="4.png" alt="Modelo Matemático" style="width: 700px; height: auto;">
+        <br>
+        <br>
+        <form id="calcForm">
+            <label for="n">n:</label>
+            <input type="number" id="n" placeholder="Paso actual">
+            <br>
+            <label for="cpow">cpow:</label>
+            <input type="number" id="cpow" placeholder="Cambio duración">
+            <br>
+            <label for="ppow">ppow:</label>
+            <input type="number" id="ppow" placeholder="Número control">
+            <br>
+            <label for="p">p:</label>
+            <input type="number" id="p" step="0.01" min="0" max="1" placeholder="Evap. feromona">
+            <br>
+            <label for="deltaTau">Δτ:</label>
+            <input type="number" id="deltaTau" placeholder="Feromona depositada">
+            <br>
+            <button type="button" onclick="calcularT()">Calcular T</button>
+        </form>
+        <div id="resultado" class="result"></div>
+        <br>
+        <a href="index.html" type="button">Atrás</a>
+    </div>
+
+    <script>
+        function calcularT() {
+            var n = parseInt(document.getElementById('n').value);
+            var cpow = parseFloat(document.getElementById('cpow').value);
+            var ppow = parseFloat(document.getElementById('ppow').value);
+            var p = parseFloat(document.getElementById('p').value);
+            var deltaTau = parseFloat(document.getElementById('deltaTau').value);
+
+            var T = 0;
+            for (var i = 0; i < n; i++) {
+                T += Math.pow((1 - p), i) * deltaTau;
+            }
+            document.getElementById('resultado').innerHTML = "T(n.cpow.ppow) = " + T.toFixed(2);
+        }
+    </script>
+</body>
+</html>

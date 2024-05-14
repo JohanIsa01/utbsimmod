@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambio en la longitud del ciclo Cij</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        input[type="number"] {
+            width: 100px;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cambio en la longitud del ciclo Cij</h1>
+
+        <h2>Ajuste de en la duración del ciclo del semáforo en la intersección durante la transición</h2>
+        <br>
+        <img src="1.png" alt="Modelo Matemático" style="width: 500px; height: auto;">
+        <br>
+        <br>
+        <form id="calcForm">
+            <label for="cif">Cif (seg):</label>
+            <input type="number" id="cif" placeholder="Ciclo final" min="15" max="90">
+            <br>
+            <label for="cio">Cio (seg):</label>
+            <input type="number" id="cio" placeholder="Ciclo inicial" min="15" max="80">
+            <br>
+            <label for="cpow">Cpow (i,j):</label>
+            <input type="number" id="cpow" placeholder="Cambio de duración">
+            <br>
+            <label for="n">n:</label>
+            <input type="number" id="n" placeholder="Paso actual">
+            <br>
+            <label for="N">N:</label>
+            <input type="number" id="N" placeholder="Número pasos">
+            <br>
+            <button type="button" onclick="calcular()">Calcular</button>
+            
+        </form>
+        <div id="resultado"></div>
+        <br>
+        <a href="index.html" type="button">Atrás</a>
+    </div>
+
+    <script>
+        function calcular() {
+            var cif = parseFloat(document.getElementById('cif').value);
+            var cio = parseFloat(document.getElementById('cio').value);
+            var cpow = parseFloat(document.getElementById('cpow').value);
+            var n = parseFloat(document.getElementById('n').value);
+            var N = parseFloat(document.getElementById('N').value);
+            
+            // Validar si los valores cif y cio están dentro del rango
+            if (cif < 15 || cif > 90 || cio < 15 || cio > 80) {
+                document.getElementById('resultado').innerHTML = "Error: Los valores de Cif deben estar entre 15 y 90, y los valores de Cio deben estar entre 15 y 80.";
+                return;
+            }
+            
+            var cij = cio + (cif - cio) * Math.pow(cpow, (n / N));
+            document.getElementById('resultado').innerHTML = "La longitud del ciclo (Cij) es: " + cij.toFixed(2);
+        }
+    </script>
+</body>
+</html>

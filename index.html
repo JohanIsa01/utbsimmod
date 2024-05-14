@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo Matemático</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-selected {
+            background-color: #28a745;
+        }
+
+        .btn-selected:hover {
+            background-color: #218838;
+        }
+
+        #selectedOption {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h2>“DISEÑO Y OPTIMIZACIÓN DE UN MODELO MATEMÁTICO PARA LA TRANSICIÓN ENTRE EL CAMBIO DE PLANES DE LOS TIEMPOS DE REPARTO DE LOS SEMÁFOROS”</h2>
+    <br>
+    <img src="1.jpg" alt="Modelo Matemático" style="width: 500px; height: auto;">
+    <br>
+    <br>
+    <br>
+    <button class="btn btn-primary" onclick="redirectTo('1.html')">1. Cambio en la longitud del ciclo Cij</button>
+    <button class="btn btn-primary" onclick="redirectTo('2.html')">2. Ajuste del tiempo entre señales de tráfico Øij</button>
+    <button class="btn btn-primary" onclick="redirectTo('3.html')">3. Espacio de Solución</button>
+    <button class="btn btn-primary" onclick="redirectTo('4.html')">4. Actualización de Feromonas</button>
+
+    <p>Opción seleccionada: <span id="selectedOption">Ninguna</span></p>
+</div>
+
+<script>
+    let selectedOption = null;
+
+    function selectOption(option) {
+        selectedOption = option;
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.classList.remove('btn-selected');
+        });
+        document.getElementById(`btn-${option}`).classList.add('btn-selected');
+        document.getElementById('selectedOption').textContent = `Opción ${option}`;
+    }
+    function redirectTo(page) {
+        window.location.href = page;
+    }
+</script>
+
+</body>
+</html>

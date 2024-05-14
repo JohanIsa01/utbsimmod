@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajuste del tiempo entre señales de tráfico Øij</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        input[type="number"] {
+            width: 100px;
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ajuste del tiempo entre señales de tráfico Øij</h1>
+        <h2>Ajuste de en la duración del ciclo del semáforo en la intersección durante la transición</h2>
+        <br>
+        <img src="2.png" alt="Modelo Matemático" style="width: 500px; height: auto;">
+        <br>
+        <br>
+        <h2>Cuando cambian los tiempos de las señales de tráfico, también cambia el tiempo (s) entre ellas.</h2>
+        <form id="calcForm">
+            <label for="Øio">Øio (seg):</label>
+            <input type="number" id="Øio" placeholder="Tiempo inicio entre señales" min="15" max="80">
+            <br>
+            <label for="Øif">Øif (seg):</label>
+            <input type="number" id="Øif" placeholder="Tiempo fin esperado" min="15" max="90">
+            <br>
+            <label for="ppow">ppow(i,j):</label>
+            <input type="number" id="ppow" placeholder="Número control">
+            <br>
+            <label for="n">n:</label>
+            <input type="number" id="n" placeholder="Paso actual">
+            <br>
+            <label for="N">N:</label>
+            <input type="number" id="N" placeholder="Total pasos">
+            <br>
+            <button type="button" onclick="calcular()">Calcular</button>
+        </form>
+        <div id="resultado"></div>
+        <br>
+        <a href="index.html" type="button">Atrás</a>
+    </div>
+
+    <script>
+        function calcular() {
+            var Øio = parseFloat(document.getElementById('Øio').value);
+            var Øif = parseFloat(document.getElementById('Øif').value);
+            var ppow = parseFloat(document.getElementById('ppow').value);
+            var n = parseFloat(document.getElementById('n').value);
+            var N = parseFloat(document.getElementById('N').value);
+            var Øij = Øio + (Øif - Øio) * Math.pow(ppow, (n / N));
+            document.getElementById('resultado').innerHTML = "El resultado de la operación es: " + Øij;
+        
+                    // Validar si los valores cif y cio están dentro del rango
+                    if (Øif < 15 || Øif > 90 || Øio < 15 || Øio > 80) {
+                document.getElementById('resultado').innerHTML = "Error: Los valores de Øif deben estar entre 15 y 90, y los valores de Øio deben estar entre 15 y 80.";
+                return;
+            }
+            
+            var cij = Øio + (Øif - Øio) * Math.pow(cpow, (n / N));
+            document.getElementById('resultado').innerHTML = "La longitud del ciclo (Cij) es: " + cij.toFixed(2);
+        }
+    </script>
+</body>
+</html>
